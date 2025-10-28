@@ -20,6 +20,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          
+      - name: Login to IBM Container Registry
+        run: echo "${{ secrets.IBM_CLOUD_API_KEY }}" | docker login -u iamapikey --password-stdin icr.io
 
       - name: Pull IBM ACE Docker image
         run: docker pull icr.io/appc/ace:12.0.9.0
