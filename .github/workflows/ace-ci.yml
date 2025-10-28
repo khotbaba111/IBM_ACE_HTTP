@@ -42,6 +42,20 @@ jobs:
           name: http_app
           path: bar/http_app.bar
 
+  test-ace:
+    needs: build-ace
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Run functional tests inside ACE container
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}/bar:/home/aceuser/bar \
+            -v ${{ github.workspace }}/tests:/home/aceuser/tests \
+            ibmcom/ace:11.0.0.6.3-amd64 \
+            bash /home/aceuser/tests/validate.sh
+
   # -------------------------------------------------
   # 🧪 Job 2: Run Python Unit Tests
   # -------------------------------------------------
@@ -81,9 +95,9 @@ jobs:
           done
       
 
-      - name: Run Pytest tests
+      #- name: Run Pytest tests
         #run: pytest
-        run:  pytest tests/test_flow_conversion.py -v
+        #run:  pytest tests/test_flow_conversion.py -v
         #run: pytest tests/ --maxfail=1 --disable-warnings -q
 
       - name: Stop and remove ACE container
