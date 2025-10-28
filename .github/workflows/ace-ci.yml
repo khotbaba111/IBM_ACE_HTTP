@@ -1,41 +1,50 @@
-name: IBM ACE CI/CD Pipeline
+name: Build IBM ACE BAR File
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
-  # -------------------------------------------------
-  # 🧱 Job 1: Build and Test IBM ACE Application
-  # -------------------------------------------------
-  build-ace:
+  build:
     runs-on: ubuntu-latest
+
     steps:
+      # Step 1: Checkout code
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
+      # Step 2: Verify workspace structure (optional)
+      - name: List workspace files
+        run: ls -R ${{ github.workspace }}
 
-      - name: Login to IBM Cloud Container Registry
-        run: echo "${{ secrets.IBM_CLOUD_API_KEY }}" | docker login -u iamapikey --password-stdin icr.io
-
+      # Step 3: Pull IBM ACE Docker image
+      # Using 11.0.0.0 since you already have success with that
       - name: Pull IBM ACE Docker image
         run: docker pull ibmcom/ace:11.0.0.0
 
+      # Step 4: Build BAR file using Docker
       - name: Build BAR file
-        run: docker run --rm -e LICENSE=accept -v ${{ github.workspace }}:/workspace ibmcom/ace:11.0.0.0 bash -c "cd /workspace && mqsipackagebar -a MyApp.bar -k MyHTTPApp"
+        run: |
+          docker run --rm \
+            -e LICENSE=accept \
+            -v ${{ github.workspace }}:/workspace \
+            ibmcom/ace:11.0.0.0 \
+            bash -c "cd /workspace && mqsipackagebar -a bar/http_app.bar -w /workspace"
 
+      # Step 5: Verify BAR file
+      - name: Check BAR file generated
+        run: |
+          echo "Generated BAR files:"
+          ls -lh ${{ github.workspace }}/bar
 
+      # Step 6: Upload BAR file as workflow artifact (optional)
       - name: Upload BAR artifact
         uses: actions/upload-artifact@v4
         with:
-          name: http_app
-          path: http_app.bar
+          name: http_app_bar
+          path: bar/http_app.bar
 
   # -------------------------------------------------
   # 🧪 Job 2: Run Python Unit Tests
