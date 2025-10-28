@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: http_app
-          path: http_app.bar
+          path: bar/http_app.bar
 
   # -------------------------------------------------
   # 🧪 Job 2: Run Python Unit Tests
