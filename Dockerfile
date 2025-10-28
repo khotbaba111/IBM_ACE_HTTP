@@ -8,7 +8,7 @@ ENV MQSI_BASE_DIRECTORY=/opt/ibm/ace-11
 
 
 # Copy your BAR file into the image
-COPY docker.bar /home/aceuser/initial-config/bars/
+COPY bar/http_app.bar /home/aceuser/initial-config/bars/
 
 # Optional: Copy custom server config
 # COPY server.conf.yaml /home/aceuser/initial-config/
