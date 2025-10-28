@@ -30,7 +30,8 @@ jobs:
             -e LICENSE=accept \
             -v ${{ github.workspace }}:/workspace \
             ibmcom/ace:11.0.0.6.3-amd64 \
-            bash -c "cd /workspace && mqsipackagebar -a http_app.bar -k MyHTTPApp"
+            bash -c "IntegrationServer --no-node-id --work-dir /tmp & sleep 15 && cd /workspace && mqsipackagebar -a http_app.bar -k MyHTTPApp && echo 'BAR file built successfully!' && exit 0"
+      
 
       - name: Upload BAR artifact
         uses: actions/upload-artifact@v4
