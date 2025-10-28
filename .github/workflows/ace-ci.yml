@@ -20,7 +20,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          
+
       - name: Login to IBM Container Registry
         run: echo "${{ secrets.IBM_CLOUD_API_KEY }}" | docker login -u iamapikey --password-stdin icr.io
 
@@ -50,7 +50,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Set up Python 3
+      - name: Set up Python 3.0.0
         uses: actions/setup-python@v5
         with:
           python-version: 3.10
