@@ -36,6 +36,15 @@
       <artifactId>jsonassert</artifactId>
       <version>1.5.1</version>
     </dependency>
+	
+	<dependency>
+	  <groupId>com.ibm.integration.test</groupId>
+	  <artifactId>integration-test-v1</artifactId>
+	  <version>1.0</version>
+	  <scope>system</scope>
+	  <systemPath>${project.basedir}/lib/IntegrationTest-v1.jar</systemPath>
+	</dependency>
+
   </dependencies>
 
   <build>
