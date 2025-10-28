@@ -26,7 +26,7 @@ jobs:
       # 3️⃣ Pull IBM ACE Docker image
       - name: Pull IBM ACE Docker image
         run: |
-          docker pull ibmcom/ace:12.0.9.0-r1
+          docker pull ibmcom/ace:11.0.0.6.3-amd64
 
       # 4️⃣ Build BAR file using ACE Docker
       - name: Build BAR file
