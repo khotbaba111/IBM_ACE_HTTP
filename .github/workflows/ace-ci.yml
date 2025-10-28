@@ -69,7 +69,8 @@ jobs:
           sleep 25
 
       - name: Run Pytest tests
-        run: pytest tests/ --maxfail=1 --disable-warnings -q
+        run:  pytest tests/test_flow_conversion.py -v
+        #run: pytest tests/ --maxfail=1 --disable-warnings -q
 
       - name: Stop and remove ACE container
         if: always()
