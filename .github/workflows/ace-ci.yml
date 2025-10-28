@@ -22,7 +22,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Login to IBM Cloud Container Registry
-        run: echo ${{ secrets.IBM_CLOUD_API_KEY }} | docker login -u iamapikey --password-stdin icr.io
+        run: echo "${{ secrets.IBM_CLOUD_API_KEY }}" | docker login -u iamapikey --password-stdin icr.io
 
       - name: Pull IBM ACE Docker image
         run: docker pull icr.io/appc/ace-min:12.0.9.0
