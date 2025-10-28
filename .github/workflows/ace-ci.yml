@@ -72,7 +72,7 @@ jobs:
         run: |
           echo "Waiting for ACE container to start..."
           for i in {1..40}; do
-            if curl -s http://localhost:7801/first > /dev/null; then
+            if curl -s http://localhost:7600/first > /dev/null; then
               echo "ACE is up and running!"
               break
             fi
