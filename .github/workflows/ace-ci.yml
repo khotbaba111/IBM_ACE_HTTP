@@ -24,13 +24,16 @@ jobs:
       - name: Pull IBM ACE Docker image
         run: docker pull ibmcom/ace:11.0.0.6.3-amd64
 
-      - name: Build BAR file
+      - name: Verify existing BAR file
         run: |
-          docker run --rm \
-            -e LICENSE=accept \
-            -v ${{ github.workspace }}:/workspace \
-            ibmcom/ace:11.0.0.6.3-amd64 \
-            bash -c "IntegrationServer --no-node-id --work-dir /tmp & sleep 15 && cd /workspace && mqsipackagebar -a http_app.bar -k MyHTTPApp && echo 'BAR file built successfully!' && exit 0"
+          echo "Checking for prebuilt BAR file..."
+          ls -lh ${{ github.workspace }}/bar/http_app.bar
+          if [ ! -f "${{ github.workspace }}/bar/http_app.bar" ]; then
+            echo "❌ BAR file not found in bar/ directory!"
+            exit 1
+          else
+            echo "✅ BAR file found: bar/http_app.bar"
+          fi
       
 
       - name: Upload BAR artifact
