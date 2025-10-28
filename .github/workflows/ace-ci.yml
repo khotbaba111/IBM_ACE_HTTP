@@ -65,14 +65,14 @@ jobs:
       - name: Start ACE container for testing
         run: |
           docker build -t ace-test .
-          docker run -d -p 7600:7600 --name ace-container ace-test
+          docker run -d -p 7800:7800 --name ace-container ace-test
           sleep 25
 
       - name: Wait for ACE to be ready
         run: |
           echo "Waiting for ACE container to start..."
           for i in {1..40}; do
-            if curl -s http://localhost:7600/first > /dev/null; then
+            if curl -s http://localhost:7800/first > /dev/null; then
               echo "ACE is up and running!"
               break
             fi
@@ -80,7 +80,7 @@ jobs:
             sleep 5
           done
           echo "Checking response:"
-          curl -v http://localhost:7600/first || echo "ACE not responding yet"
+          curl -v http://localhost:7800/first || echo "ACE not responding yet"
           sleep 10
       
 
