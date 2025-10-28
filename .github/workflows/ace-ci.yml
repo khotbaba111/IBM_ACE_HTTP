@@ -30,9 +30,7 @@ jobs:
 
       # 4️⃣ Build BAR file using ACE Docker
       - name: Build BAR file
-        run: |
-          docker run --rm \ -e LICENSE=accept \ -v ${{ github.workspace }}:/workspace ibmcom/ace:11.0.0.6.3-amd64 \
-            bash -c "cd /workspace && mqsipackagebar -a http_app.bar -k MyHTTPApp"
+        run: docker run --rm -e LICENSE=accept -v ${{ github.workspace }}:/workspace ibmcom/ace:11.0.0.6.3-amd64 bash -c "cd /workspace && mqsipackagebar -a MyApp.bar -k MyHTTPApp"
 
       # 5️⃣ Upload BAR as artifact
       - name: Upload BAR artifact
