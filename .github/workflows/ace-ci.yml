@@ -79,9 +79,6 @@ jobs:
             echo "Still waiting... ($i)"
             sleep 5
           done
-          echo "Checking response:"
-          curl -v http://localhost:7800/first || echo "ACE not responding yet"
-          sleep 10
       
 
       #- name: Run Pytest tests
@@ -120,7 +117,7 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: loan_app
+          ECR_REPOSITORY: ACE_HTTP
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -131,14 +128,14 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: flask_app_defination-revision1.json
-          container-name: flask_container
+          task-definition: ACE_HTTP_defination-revision1.json
+          container-name: ACE_HTTP_container
           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy ECS service
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: flask_app_defination-service-93om3zet
-          cluster: loan-app-cluster
+          service: ACE_HTTP_defination-service-93om3zet
+          cluster: ACE_HTTP_cluster
           wait-for-service-stability: true
