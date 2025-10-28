@@ -68,8 +68,21 @@ jobs:
           docker run -d -p 7801:7801 --name ace-container ace-test
           sleep 25
 
+      - name: Wait for ACE to be ready
+        run: |
+          echo "Waiting for ACE container to start..."
+          for i in {1..30}; do
+            if curl -s http://localhost:7801/first > /dev/null; then
+              echo "ACE is up and running!"
+              break
+            fi
+            echo "Still waiting... ($i)"
+            sleep 5
+          done
+
       - name: Run Pytest tests
-        run:  pytest tests/test_flow_conversion.py -v
+        run: pytest
+        #run:  pytest tests/test_flow_conversion.py -v
         #run: pytest tests/ --maxfail=1 --disable-warnings -q
 
       - name: Stop and remove ACE container
