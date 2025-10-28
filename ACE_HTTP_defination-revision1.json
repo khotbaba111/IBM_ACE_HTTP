@@ -44,7 +44,7 @@
     "memory": "3072",
     "networkMode": "awsvpc",
     "placementConstraints": [],
-    "registeredAt": "2025-10-28T19:01:45.554Z",
+    "registeredAt": "2025-10-28T19:24:21.752Z",
     "registeredBy": "arn:aws:iam::856461102424:user/devops_user_4663020_84588",
     "requiresAttributes": [
         {
@@ -75,13 +75,13 @@
     "requiresCompatibilities": [
         "FARGATE"
     ],
-    "revision": 1,
+    "revision": 4,
     "runtimePlatform": {
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
     "status": "ACTIVE",
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:856461102424:task-definition/ACE_HTTP_defination:1",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:856461102424:task-definition/ACE_HTTP_defination:4",
     "volumes": [],
     "tags": []
 }

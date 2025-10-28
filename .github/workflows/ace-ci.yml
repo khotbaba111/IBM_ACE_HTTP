@@ -136,6 +136,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ACE_HTTP_defination-service-93om3zet
+          service: ACE_HTTP_defination-service-hi5qnyco
           cluster: ACE_HTTP_cluster
           wait-for-service-stability: true
