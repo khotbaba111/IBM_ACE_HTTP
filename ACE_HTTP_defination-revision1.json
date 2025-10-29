@@ -10,11 +10,11 @@
             "environment": [],
             "environmentFiles": [],
             "essential": true,
-            "image": "856461102424.dkr.ecr.us-east-1.amazonaws.com/ace_http:latest",
+            "image": "261558455174.dkr.ecr.us-east-1.amazonaws.com/ace_http:latest",
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/ACE_HTTP_defination",
+                    "awslogs-group": "/ecs/ace_http_defination",
                     "awslogs-create-group": "true",
                     "awslogs-region": "us-east-1",
                     "awslogs-stream-prefix": "ecs"
@@ -22,7 +22,7 @@
                 "secretOptions": []
             },
             "mountPoints": [],
-            "name": "ACE_HTTP_container",
+            "name": "ace_http_container",
             "portMappings": [
                 {
                     "appProtocol": "http",
@@ -39,13 +39,13 @@
     ],
     "cpu": "1024",
     "enableFaultInjection": false,
-    "executionRoleArn": "arn:aws:iam::856461102424:role/ecsTaskExecutionRole",
-    "family": "ACE_HTTP_defination",
+    "executionRoleArn": "arn:aws:iam::261558455174:role/ecsTaskExecutionRole",
+    "family": "ace_http_defination",
     "memory": "3072",
     "networkMode": "awsvpc",
     "placementConstraints": [],
-    "registeredAt": "2025-10-28T19:24:21.752Z",
-    "registeredBy": "arn:aws:iam::856461102424:user/devops_user_4663020_84588",
+    "registeredAt": "2025-10-29T09:17:17.963Z",
+    "registeredBy": "arn:aws:iam::261558455174:user/devops_user_4663020_84728",
     "requiresAttributes": [
         {
             "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
@@ -75,13 +75,13 @@
     "requiresCompatibilities": [
         "FARGATE"
     ],
-    "revision": 4,
+    "revision": 1,
     "runtimePlatform": {
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
     "status": "ACTIVE",
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:856461102424:task-definition/ACE_HTTP_defination:4",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:261558455174:task-definition/ace_http_defination:1",
     "volumes": [],
     "tags": []
 }
