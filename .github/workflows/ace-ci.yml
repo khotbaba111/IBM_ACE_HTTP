@@ -128,7 +128,8 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: ace_http_defination-revision1.json
+          #task-definition: ace_http_defination-revision1.json
+          task-definition: ${{ github.workspace }}/ace_http_defination-revision1.json
           container-name: ace_http_container
           image: ${{ steps.build-image.outputs.image }}
 
