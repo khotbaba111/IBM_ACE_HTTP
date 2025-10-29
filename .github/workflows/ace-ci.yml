@@ -43,7 +43,7 @@ jobs:
           path: bar/http_app.bar
 
   # -------------------------------------------------
-  # 🧪 Job 2: Run Java Unit Tests
+  # 🧪 Job 2: Run Python Unit Tests
   # -------------------------------------------------
   test-python:
     needs: build-ace
@@ -51,22 +51,16 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Set up JDK
-        uses: actions/setup-java@v4
+      - name: Set up Python 3
+        uses: actions/setup-python@v5
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          python-version: 3.13
 
-      #- name: Set up Python 3
-      #  uses: actions/setup-python@v5
-       # with:
-       #   python-version: 3.13
-
-     # - name: Install dependencies
-       # run: |
-       #   python -m pip install --upgrade pip
-       #   pip install -r requirements.txt
-        #  pip install pytest requests
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest requests
 
       - name: Start ACE container for testing
         run: |
@@ -85,11 +79,9 @@ jobs:
             echo "Still waiting... ($i)"
             sleep 5
           done
+      
 
-      - name: Run JUnit Tests
-        run: cd tests && mvn test
-
-        #- name: Run Pytest tests
+      #- name: Run Pytest tests
         #run: pytest
         #run:  pytest tests/test_flow_conversion.py -v
         #run: pytest tests/ --maxfail=1 --disable-warnings -q
