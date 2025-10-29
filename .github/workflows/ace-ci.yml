@@ -128,14 +128,14 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: ACE_HTTP_defination-revision1.json
-          container-name: ACE_HTTP_container
+          task-definition: ace_http_defination-revision1.json
+          container-name: ace_http_container
           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy ECS service
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ACE_HTTP_defination-service-io0y12tp
-          cluster: ACE_HTTP_cluster
+          service: ace_http_defination-service-zgjrpu93
+          cluster: ace_http_cluster
           wait-for-service-stability: true
